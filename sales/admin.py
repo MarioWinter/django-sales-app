@@ -6,6 +6,10 @@ class CustomerAdmin(admin.ModelAdmin):
     list_filter=["first_name", "last_name", "newsletter_abo"]
     list_display=["first_name", "last_name", "account", "newsletter_abo", "email_address"]
     search_fields=["first_name", "last_name", "newsletter_abo"]
+    
+    readonly_fields=["account"]
+    prepopulated_fields={"slug":["first_name", "last_name"]}
+    
     fieldsets = [
         (
             None,
@@ -17,7 +21,7 @@ class CustomerAdmin(admin.ModelAdmin):
             "Advanced options",
             {
                 "classes": ["collapse"],
-                "fields": ["newsletter_abo", "account"],
+                "fields": ["newsletter_abo", "account", "slug"],
             },
         ),
     ]

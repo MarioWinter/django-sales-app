@@ -1,15 +1,27 @@
+from typing import Iterable
 from django.db import models
 
 # Create your models here.
 class Customer(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30, error_messages="ups", help_text="max 30 letters")
+    last_name = models.CharField(max_length=30, error_messages="ups", help_text="max 30 letters")
     newsletter_abo = models.BooleanField(default=True)
-    email_address = models.CharField(max_length=30, blank=True, default="")
+    email_address = models.CharField(max_length=30, blank=True, default="", error_messages="ups", help_text="max 30 letters")
     account = models.FloatField(blank=True, null=True)
+    slug = models.SlugField(blank=True, default="")
     # one-to-many Order
+    
+    class Meta:
+        verbose_name="Customer"
+        verbose_name_plural="Customers"
+        ordering=["last_name"]
+    
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+    def save(self):
+        self.account = 200
+        return super().save()
         
 
 class Product(models.Model):
