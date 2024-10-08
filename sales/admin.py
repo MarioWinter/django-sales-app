@@ -6,6 +6,22 @@ class CustomerAdmin(admin.ModelAdmin):
     list_filter=["first_name", "last_name", "newsletter_abo"]
     list_display=["first_name", "last_name", "account", "newsletter_abo", "email_address"]
     search_fields=["first_name", "last_name", "newsletter_abo"]
+    fieldsets = [
+        (
+            None,
+            {
+                "fields": ["first_name", "last_name", "email_address"],
+            },
+        ),
+        (
+            "Advanced options",
+            {
+                "classes": ["collapse"],
+                "fields": ["newsletter_abo", "account"],
+            },
+        ),
+    ]
+    
 
 class ProductAdmin(admin.ModelAdmin):
     list_filter=["name", "price"]
