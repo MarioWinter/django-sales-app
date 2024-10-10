@@ -8,7 +8,6 @@ class CustomerAdmin(admin.ModelAdmin):
     search_fields=["first_name", "last_name", "newsletter_abo"]
     
     readonly_fields=["account"]
-    prepopulated_fields={"slug":["first_name", "last_name"]}
     
     fieldsets = [
         (
@@ -21,7 +20,7 @@ class CustomerAdmin(admin.ModelAdmin):
             "Advanced options",
             {
                 "classes": ["collapse"],
-                "fields": ["newsletter_abo", "account", "slug"],
+                "fields": ["newsletter_abo", "account"],
             },
         ),
     ]

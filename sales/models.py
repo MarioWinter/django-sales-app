@@ -10,18 +10,11 @@ class Customer(models.Model):
     account = models.FloatField(blank=True, null=True)
     slug = models.SlugField(blank=True, default="")
     # one-to-many Order
-    
-    class Meta:
-        verbose_name="Customer"
-        verbose_name_plural="Customers"
-        ordering=["last_name"]
+
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-    
-    def save(self):
-        self.account = 200
-        return super().save()
+
         
 
 class Product(models.Model):
