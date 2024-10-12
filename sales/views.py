@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 
 from .models import Customer
 
 # Create your views here.
+
+def redirect_to_sales_view(request):
+    return redirect('sales/', permanent=True)
+
 class CustomerListView(ListView):
     model = Customer
     #queryset = Customer.objects.all()
